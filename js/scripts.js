@@ -1,6 +1,7 @@
 //Seleção de elementos
 
-const sideBarElement = document.querySelector(".side-bar-inner");
+const sideBarElement = document.querySelectorAll(".side-bar-inner");
+const btnsBottomBar = document.querySelectorAll(".button-bottom-bar");
 
 //Listas Sidebar
 const utilidadesSbElement = document.querySelector("#utilidades");
@@ -14,28 +15,36 @@ const tbElectricPanelsBtn = document.querySelector("#tb-electric-panels");
 
 
 //Funçoes
+
+//Remove seleção do botão da sidebar e remove a lista de elementos da sidebar
 function addHideDisplaytoAll () {
-    utilidadesSbElement.classList.add("hide");
-    electricPanelsSbElement.classList.add("hide");
+    sideBarElement.forEach((item) => {
+        item.classList.add("hide");
+    });
+    
+    btnsBottomBar.forEach((item) => {
+        item.classList.remove("button-selected");
+    });
+
 }
 
 
 //Eventos
-tbMachineResourcesBtn.addEventListener("click", () => {
-    if (!utilidadesSbElement.classList.contains("hide")) {
-        return
-    } else {
-        addHideDisplaytoAll();
-        utilidadesSbElement.classList.remove("hide");
-    }
-});
 
-tbElectricPanelsBtn.addEventListener("click", () => {
-    if (!electricPanelsSbElement.classList.contains("hide")) {
-        return
-    } else {
-        addHideDisplaytoAll();
-        electricPanelsSbElement.classList.remove("hide");
-    }
-});
+//Função para os eventos dos botões da topbar
+function btnTopBarEvent (btn, sideBarElement) {
+    btn.addEventListener("click", () => {
+        if (!sideBarElement.classList.contains("hide")) {
+            return
+        } else {
+            addHideDisplaytoAll();
+            sideBarElement.classList.remove("hide");
+            btn.classList.add("button-selected");
+        }
+    });
+}
+
+btnTopBarEvent (tbMachineResourcesBtn, utilidadesSbElement);
+btnTopBarEvent (tbElectricPanelsBtn, electricPanelsSbElement);
+
 
