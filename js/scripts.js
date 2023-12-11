@@ -1,3 +1,17 @@
+//Objetos e propriedades
+
+const compressorSierra200 = {
+    title: "Sierra 200 - Ingersoll Rand",
+    description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
+    img: "img/machines/cda/sierra200.jpg",
+}
+
+const compressorNirvana150 = {
+    title: "Nirvana 150 - Ingersoll Rand",
+    description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
+    img: "img/machines/cda/nirvana150.jpg",
+}
+
 //Seleção de elementos
 
 const sideBarElement = document.querySelectorAll(".side-bar-inner");
@@ -11,10 +25,71 @@ const electricPanelsSbElement = document.querySelector("#paineis-eletricos");
 const tbMachineResourcesBtn = document.querySelector("#tb-machines-resources");
 const tbElectricPanelsBtn = document.querySelector("#tb-electric-panels");
 
+//Card de máquinas
+const centralInnerElement = document.querySelector("#central-inner");
+
+//Elementos da tela de add resource
+const addResourceBtn = document.querySelector("#add-resource");
+const addResourceScreenElement = document.querySelector(".add-resource-screen");
+const resourceScreenBtnClose = document.querySelector("#add-resource-screen-button-close");
+const resourceScreenBtnOk = document.querySelector("#add-resource-screen-form-button-ok");
+
 //Botões da Sidebar
 
 
 //Funçoes
+
+//Função para criar um card no container central
+function createCard (item) {
+    const divPrincipal = document.createElement("div");
+    divPrincipal.classList.add("central-item");
+
+    const divText = document.createElement("div");
+    divText.classList.add("central-item-text");
+    divPrincipal.appendChild(divText);
+
+    const itemTitle = document.createElement("h4");
+    itemTitle.innerText = item.title;
+    divText.appendChild(itemTitle);
+
+    const itemDescription = document.createElement("p");
+    itemDescription.innerText = item.description;
+    divText.appendChild(itemDescription);
+
+    const divResourceImg = document.createElement("div");
+    divResourceImg.classList.add("resource-img");
+    divPrincipal.appendChild(divResourceImg);
+
+    const itemImg = document.createElement("img");
+    itemImg.src = item.img;
+    divResourceImg.appendChild(itemImg);
+
+    centralInnerElement.appendChild(divPrincipal);
+
+}
+
+//Função de adicionar cards
+function addCard () {
+
+    const title = document.querySelector("#add-resource-screen-form-title");
+    const description = document.querySelector("#add-resource-screen-form-description");
+    const img = document.querySelector("#add-resource-screen-img-file");
+
+    console.log(img.files[0].name);
+
+    const item = {
+        title: title.value,
+        description: description.value,
+        img: "img/machines/cda/nirvana150.jpg",
+    }
+
+    if (title.value && description.value){
+        createCard (item);
+        addResourceScreenElement.classList.add("hide");  
+    }
+    
+
+}
 
 //Remove seleção do botão da sidebar e remove a lista de elementos da sidebar
 function addHideDisplaytoAll () {
@@ -31,7 +106,7 @@ function addHideDisplaytoAll () {
 
 //Eventos
 
-//Função para os eventos dos botões da topbar
+//Eventos dos botões da topbar
 function btnTopBarEvent (btn, sideBarElement) {
     btn.addEventListener("click", () => {
         if (!sideBarElement.classList.contains("hide")) {
@@ -44,7 +119,30 @@ function btnTopBarEvent (btn, sideBarElement) {
     });
 }
 
+
 btnTopBarEvent (tbMachineResourcesBtn, utilidadesSbElement);
 btnTopBarEvent (tbElectricPanelsBtn, electricPanelsSbElement);
 
+//Evento para o botão de adicionar cards a div central (abre tela de adicionar cards)
+addResourceBtn.addEventListener("click", () =>{
+    addResourceScreenElement.classList.remove("hide");
+});
+
+//Evento para o botão de fechar tela de adicionar cards
+resourceScreenBtnClose.addEventListener("click", () => {
+    addResourceScreenElement.classList.add("hide");
+});
+
+
+//
+
+//Evento para o botão de OK da tela de adicionar cards
+resourceScreenBtnOk.addEventListener("click", () => {
+    addCard ();
+    
+})
+
+
+//Adiciona cards na div Central
+createCard(compressorSierra200);
 

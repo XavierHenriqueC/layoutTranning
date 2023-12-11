@@ -63,7 +63,7 @@ header {
     flex: 1;
 }
 
-#aplication-name p{
+#aplication-name p {
     color: #fff;
     font-size: 1rem;
 }
@@ -123,17 +123,17 @@ header {
     background-color: transparent;
 }
 
-.side-bar-inner::-webkit-scrollbar {
+#central-inner::-webkit-scrollbar, .side-bar-inner::-webkit-scrollbar {
     width: 0.3rem;
     display: block;
 }
 
-.side-bar-inner::-webkit-scrollbar-track {
+#central-inner::-webkit-scrollbar-track, .side-bar-inner::-webkit-scrollbar-track {
     background-color: #cccccc8e;
     border-radius: 100px;
 }
 
-.side-bar-inner::-webkit-scrollbar-thumb {
+#central-inner::-webkit-scrollbar-thumb, .side-bar-inner::-webkit-scrollbar-thumb {
     border-radius: 100px;
     border: 6px solid rgba(0, 0, 0, 0.18);
     border-left: 0;
@@ -141,9 +141,6 @@ header {
     background-color: #1b72a898;
 }
 
-.hide {
-    display: none;
-}
 
 .link-sidebar {
     padding: 10px 5px;
@@ -181,6 +178,7 @@ main {
 
 #central{
     display: flex;
+    flex-direction: column;
     width: 100%;
     margin: 5px 5px;
     background-color: #fff;
@@ -191,17 +189,51 @@ main {
         box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.44); 
 }
 
+.topbar-central {
+    display: flex;
+    flex-direction: row;
+    background-color: #77aac9;
+    min-height: 1rem;
+    padding: 0.7rem;
+    justify-content: flex-end;
+}
+
+.topbar-central button {
+    background-color: #1ca018;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 0.3rem;
+    align-self: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.topbar-central button:hover {
+    background-color: #fff;
+    color: #1ca018;
+}
+
 #central-inner {
-    width: 100%;
+    width: auto;
+    height: auto;
     max-height: 100%;
     padding: 0.3rem;
     margin: 0.3rem 0.3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    overflow-y: scroll;
 }
 
 .central-item {
+    display: flex;
+    flex-direction: column;
     border: 1px solid #ccc;
     width: 20rem;
     height: 20rem;
+    min-height: auto;
     padding: 0.8rem;
     border-radius: 5px;
         /* Box Shadow */
@@ -210,11 +242,39 @@ main {
         box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.44);
 }
 
+.central-item .central-item-text {
+    min-height: 40%;
+    max-height: 40%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
 .central-item h4{
     font-size: 1rem;
     border-bottom: 1px solid #ccc;
     margin-bottom: 0.8rem;
 }
+
+.central-item p{
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.central-item .resource-img {
+    display: flex;
+    border: 1px solid #ccc;
+    width: 75%;
+    padding: 0.4rem;
+    max-height: 50%;
+}
+
+.central-item .resource-img img{
+    width: 98%;
+    margin: 0 auto;
+    max-height: fit-content;
+}
+
 
 footer {
     padding: 0.5rem 0.5rem;
@@ -232,4 +292,75 @@ footer {
 #rodape h4{
     color: #fff;
     font-size: 0.7rem;
+}
+
+.add-resource-screen {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    width: 60%;
+    height: auto;
+    top: 10%;
+    left: 20%;
+    /* Box Shadow */
+    -webkit-box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.44);
+    -moz-box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.44);
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.44);
+    padding: 1rem;
+}
+
+.add-resource-screen-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.add-resource-screen h3 {
+    margin: auto 0;
+}
+
+.add-resource-screen-header button {
+    width: 20px;
+    height: 20px;
+    align-self: center;
+}
+
+.add-resource-screen-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.add-resource-screen-form label {
+    margin-bottom: 0.3rem;
+}
+
+.add-resource-screen-form input {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+}
+
+#add-resource-screen-form-button-ok {
+    margin: 0 auto;
+    padding: 0.5rem 2rem;
+    background-color: #1b72a8;
+    border: 1px solid #ccc;
+    color: #fff;
+    border-radius: 20px;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+#add-resource-screen-form-button-ok:hover {
+    opacity: 1;
+}
+
+.hide {
+    display: none;
 }

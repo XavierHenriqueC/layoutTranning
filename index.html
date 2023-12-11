@@ -107,12 +107,19 @@
     
         <main> 
             <div id="central">
+                <div class="topbar-central">
+                    <button id="add-resource">Add Resource</button>
+                </div>
                 <div id="central-inner">
-                    <div class="central-item">
-                        <h4>Item title</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, consectetur. Adipisci quo, maiores nulla debitis soluta fugiat.</p>
-                        <img src="" alt="">
-                    </div>
+                    <div class="central-item" id="sm3100">
+                        <div class="central-item-text">
+                            <h4>SM3100 - HANWHA</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, consectetur. Adipisci quo, maiores nulla debitis soluta fugiat.</p>
+                        </div>
+                        <div class="resource-img">
+                            <img src="img/machines/cda/sm3100hanwha.png" alt="SM3100 HANWHA">
+                        </div>
+                    </div>                 
                 </div>
             </div>
         </main>
@@ -124,6 +131,26 @@
             <h4>Zilia Tech - Henrique Xavier</h4>
         </div>
     </footer>
+
+    <div class="add-resource-screen hide">
+        <div class="add-resource-screen-header">
+            <h3>Add Resource</h3>
+            <button id="add-resource-screen-button-close">X</button>
+        </div>
+        <div class="add-resource-screen-form">
+            <label for="title" name="Title">Title:</label>
+            <input type="text" name="Title" placeholder="Digite o titulo do Resource" id="add-resource-screen-form-title"/>
+        </div>
+        <div class="add-resource-screen-form">
+            <label for="Description" name="Description">Description:</label>
+            <input type="text" name="Description" placeholder="Digite a descrição do Resource" id="add-resource-screen-form-description"/>
+        </div>
+        <div class="add-resource-screen-form">
+            <label for="Image" name="Image">Image:</label>
+            <input type="file" name="Image" id="add-resource-screen-img-file" accept="image/*"/>
+        </div>
+        <button id="add-resource-screen-form-button-ok">OK</button>
+    </div>
     
 </body>
 </html>
