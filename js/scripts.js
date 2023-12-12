@@ -1,19 +1,4 @@
-//Objetos e propriedades
-
-const compressorSierra200 = {
-    title: "Sierra 200 - Ingersoll Rand",
-    description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
-    img: "img/machines/cda/sierra200.jpg",
-}
-
-const compressorNirvana150 = {
-    title: "Nirvana 150 - Ingersoll Rand",
-    description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
-    img: "img/machines/cda/nirvana150.jpg",
-}
-
 //Seleção de elementos
-
 const sideBarElement = document.querySelectorAll(".side-bar-inner");
 const btnsBottomBar = document.querySelectorAll(".button-bottom-bar");
 
@@ -26,7 +11,8 @@ const tbMachineResourcesBtn = document.querySelector("#tb-machines-resources");
 const tbElectricPanelsBtn = document.querySelector("#tb-electric-panels");
 
 //Card de máquinas
-const centralInnerElement = document.querySelector("#central-inner");
+const centralInnerElement = document.querySelector(".central-inner");
+const centralItens = document.querySelectorAll(".central-item");
 
 //Elementos da tela de add resource
 const addResourceBtn = document.querySelector("#add-resource");
@@ -41,6 +27,8 @@ const resourceScreenBtnOk = document.querySelector("#add-resource-screen-form-bu
 
 //Função para criar um card no container central
 function createCard (item) {
+    
+    //Cria o card
     const divPrincipal = document.createElement("div");
     divPrincipal.classList.add("central-item");
 
@@ -65,6 +53,8 @@ function createCard (item) {
     divResourceImg.appendChild(itemImg);
 
     centralInnerElement.appendChild(divPrincipal);
+
+    //Cria a tela de especificações do card (Resource)
 
 }
 
@@ -142,7 +132,32 @@ resourceScreenBtnOk.addEventListener("click", () => {
     
 })
 
+//Evento de clique dos cards
+function abrirCard (cardTitle, screenElements) {
 
-//Adiciona cards na div Central
-createCard(compressorSierra200);
+    document.addEventListener("click", (e) => {
+        const itens = document.querySelectorAll(".central-item");
+        const targetEl = e.target;
+        const parentEl = targetEl.closest("div");
+    
+        if(parentEl && parentEl.querySelector("h4").innerText == cardTitle) {
+        
+            itens.forEach((item) => {
+                item.classList.add("hide");
+            });
+        }
+        
+    });
+
+}
+
+// //Adiciona os cards na div Central
+// dados.forEach((item) => {
+//     createCard(item);
+// });
+
+dados.forEach((item) => {
+    abrirCard(item.title, item.screen);
+});
+
 

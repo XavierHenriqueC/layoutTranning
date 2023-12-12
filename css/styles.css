@@ -123,17 +123,17 @@ header {
     background-color: transparent;
 }
 
-#central-inner::-webkit-scrollbar, .side-bar-inner::-webkit-scrollbar {
+.central-inner::-webkit-scrollbar, .side-bar-inner::-webkit-scrollbar {
     width: 0.3rem;
     display: block;
 }
 
-#central-inner::-webkit-scrollbar-track, .side-bar-inner::-webkit-scrollbar-track {
+.central-inner::-webkit-scrollbar-track, .side-bar-inner::-webkit-scrollbar-track {
     background-color: #cccccc8e;
     border-radius: 100px;
 }
 
-#central-inner::-webkit-scrollbar-thumb, .side-bar-inner::-webkit-scrollbar-thumb {
+.central-inner::-webkit-scrollbar-thumb, .side-bar-inner::-webkit-scrollbar-thumb {
     border-radius: 100px;
     border: 6px solid rgba(0, 0, 0, 0.18);
     border-left: 0;
@@ -214,7 +214,7 @@ main {
     color: #1ca018;
 }
 
-#central-inner {
+.central-inner {
     width: auto;
     height: auto;
     max-height: 100%;
@@ -236,29 +236,35 @@ main {
     min-height: auto;
     padding: 0.8rem;
     border-radius: 5px;
+    cursor: pointer;
         /* Box Shadow */
         -webkit-box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.44);
         -moz-box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.44);
         box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.44);
+
 }
+
 
 .central-item .central-item-text {
     min-height: 40%;
     max-height: 40%;
     overflow: hidden;
     margin-bottom: 1rem;
+    pointer-events: none;
 }
 
 .central-item h4{
     font-size: 1rem;
     border-bottom: 1px solid #ccc;
     margin-bottom: 0.8rem;
+    pointer-events: none;
 }
 
 .central-item p{
     font-size: 0.9rem;
     color: #666;
     margin-bottom: 1.5rem;
+    pointer-events: none;
 }
 
 .central-item .resource-img {
@@ -267,12 +273,14 @@ main {
     width: 75%;
     padding: 0.4rem;
     max-height: 50%;
+    pointer-events: none;
 }
 
 .central-item .resource-img img{
-    width: 98%;
+    width: 80%;
     margin: 0 auto;
     max-height: fit-content;
+    pointer-events: none;
 }
 
 
@@ -364,3 +372,5 @@ footer {
 .hide {
     display: none;
 }
+
+
