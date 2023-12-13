@@ -195,7 +195,26 @@ main {
     background-color: #77aac9;
     min-height: 1rem;
     padding: 0.7rem;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar-central #return-button {
+    display: flex;
+    border: 1px solid #fff;
+    align-items: center;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.topbar-central #return-button:hover{
+    background-color: #1b72a8;
+}
+
+.topbar-central ion-icon {
+    color: #fff;
+    font-size: 1.3rem;
+    pointer-events: none;
 }
 
 .topbar-central button {
@@ -253,7 +272,7 @@ main {
     pointer-events: none;
 }
 
-.central-item h4{
+.central-item h{
     font-size: 1rem;
     border-bottom: 1px solid #ccc;
     margin-bottom: 0.8rem;
@@ -370,21 +389,95 @@ footer {
 }
 
 .resource-espec-title {
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #ccc;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    align-items: center;
+}
+
+.resource-espec-title h4{
+    font-size: 1.5rem;
+    color: #444;
+}
+
+.resourse-espec-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.resourse-espec-buttons button{
+    padding: 0.5rem;
+    min-width: 8rem;
+    background-color: #ccc;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    color: #111;
+    font-size: 0.7rem;
+    font-weight: bold;
+
+}
+
+.resourse-espec-buttons button:hover {
+    background-color: #111;
+    color: #ccc;
+}
+
+.resource-espec-boby {
+    display: flex;
+    flex-direction: row;
+    gap: 20rem;
+}
+
+.resource-espec-body-left, .resource-espec-body-right {
+    margin-top: 1rem;
+}
+
+.resource-espec-body-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.resouce-table-header{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0 0 0.8rem;
+    color: #666;
+    font-weight: bold;
+}
+
+.resouce-table-header h4 {
+    color: #1b72a8;
+}
+
+.resouce-table-header ion-icon {
+    color: #1b72a8;
+    font-size: 1.5rem;
 }
 
 .resouce-table {
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid #ccc;
-    padding: 1rem;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
 }
 
 .resouce-table h4{
-    margin-right: 1rem;
+    color: #666;
+    margin-right: 0.5rem;
     font-weight: bold;
+}
 
+.resouce-table p {
+    color:#333;
+    font-size: 1rem;
 }
 
 .hide {
