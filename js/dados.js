@@ -1,4 +1,5 @@
 //Objetos e propriedades
+const resourceEspecElement = document.querySelector(".resouce-espec");
 
 let hanwhaScreen;
 let sierraScreen;
@@ -17,7 +18,7 @@ const dados = [
         title: "Sierra 200 - Ingersoll Rand",
         description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
         img: "img/machines/cda/sierra200.jpg",
-        screen: sierraScreen,
+        screen: resourceEspecElement,
     },
     
     compressorNirvana150 = {

@@ -14,6 +14,7 @@ const tbElectricPanelsBtn = document.querySelector("#tb-electric-panels");
 const centralInnerElement = document.querySelector(".central-inner");
 const centralItens = document.querySelectorAll(".central-item");
 
+
 //Elementos da tela de add resource
 const addResourceBtn = document.querySelector("#add-resource");
 const addResourceScreenElement = document.querySelector(".add-resource-screen");
@@ -64,8 +65,6 @@ function addCard () {
     const title = document.querySelector("#add-resource-screen-form-title");
     const description = document.querySelector("#add-resource-screen-form-description");
     const img = document.querySelector("#add-resource-screen-img-file");
-
-    console.log(img.files[0].name);
 
     const item = {
         title: title.value,
@@ -128,6 +127,7 @@ resourceScreenBtnClose.addEventListener("click", () => {
 
 //Evento para o botão de OK da tela de adicionar cards
 resourceScreenBtnOk.addEventListener("click", () => {
+    console.log("clicado")
     addCard ();
     
 })
@@ -145,16 +145,19 @@ function abrirCard (cardTitle, screenElements) {
             itens.forEach((item) => {
                 item.classList.add("hide");
             });
+
+           screenElements.classList.remove("hide");
+
         }
         
     });
 
 }
 
-// //Adiciona os cards na div Central
-// dados.forEach((item) => {
-//     createCard(item);
-// });
+//Adiciona os cards na div Central
+dados.forEach((item) => {
+    createCard(item);
+});
 
 dados.forEach((item) => {
     abrirCard(item.title, item.screen);
