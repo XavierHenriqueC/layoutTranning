@@ -16,11 +16,13 @@ const centralItens = document.querySelectorAll(".central-item");
 
 
 //Elementos da central e da tela de add resource
-const returnBtnTbCenter = document.querySelector("#return-button")
+const returnBtnTbCenter = document.querySelector(".return-button")
 const addResourceBtn = document.querySelector("#add-resource");
 const addResourceScreenElement = document.querySelector(".add-resource-screen");
 const resourceScreenBtnClose = document.querySelector("#add-resource-screen-button-close");
 const resourceScreenBtnOk = document.querySelector("#add-resource-screen-form-button-ok");
+const searchInput = document.querySelector("#search-input");
+const searchBar = document.querySelector(".search-bar");
 
 //Botões da Sidebar
 
@@ -209,7 +211,7 @@ function createCard (item) {
     text16.innerText = item.capacity;
     resouceTable8.appendChild(text16);
 
-    console.log(resourceSpecDiv);
+   
     centralInnerElement.appendChild(resourceSpecDiv);
 
     const resouceTableHeader2 = document.createElement("div");
@@ -294,6 +296,23 @@ function addHideDisplaytoAll () {
 
 }
 
+//Função para a barra de pesquisa dos cards
+const getSearchCards = (search) => {
+    const centralItens = document.querySelectorAll(".central-item");
+
+    centralItens.forEach ((card) => {
+        let cardTitle = card.querySelector("h4").innerText.toLowerCase();
+
+        const normalizedSearch = search.toLowerCase();
+        card.classList.remove("hide");
+
+        if(!cardTitle.includes(normalizedSearch)) {
+            card.classList.add("hide");       
+        }
+    });
+};
+
+
 
 //Eventos
 
@@ -313,6 +332,8 @@ function btnTopBarEvent (btn, sideBarElement) {
 
 btnTopBarEvent (tbMachineResourcesBtn, utilidadesSbElement);
 btnTopBarEvent (tbElectricPanelsBtn, electricPanelsSbElement);
+
+
 
 //Evento para o botão de adicionar cards a div central (abre tela de adicionar cards)
 addResourceBtn.addEventListener("click", () =>{
@@ -343,31 +364,44 @@ function abrirCard (cardTitle) {
         const parentEl = targetEl.closest("div");
         const screen = document.querySelectorAll(".resouce-espec");
         
+        //Clique do card
         if(parentEl.classList.contains("central-item") && parentEl && parentEl.querySelector("h4").innerText === cardTitle) {
+            
+            returnBtnTbCenter.style.pointerEvents = "all";
+            returnBtnTbCenter.style.opacity = "1";
+
             itens.forEach((item) => {
                 item.classList.add("hide");
-
             });
 
             screen.forEach((item) => {
+            
                 if (item.children[0].childNodes[0].innerText == parentEl.querySelector("h4").innerText) {
                     item.classList.remove("hide");
+                    searchBar.classList.add("hide");
                  }
             });
             
         };
 
+        //Clique do botão de retornar
         returnBtnTbCenter.addEventListener("click", () => {
+            
+            searchBar.classList.remove("hide");
+            searchInput.value = "";
+
+            returnBtnTbCenter.style.pointerEvents = "none";
+            returnBtnTbCenter.style.opacity = "0.3";
+            
             itens.forEach((item) => {
                 item.classList.remove("hide");
-                // screen.classList.add("hide");
             });
 
             screen.forEach((item) => {
                 item.classList.add("hide");
             });
        })
-        
+
     });
 
 }
@@ -380,7 +414,15 @@ dados.forEach((item) => {
 });
 
 dados.forEach((item) => {
-    abrirCard(item.title, item.screen);
+    abrirCard(item.title);
+});
+
+
+//Evento da barra de pesquisa
+searchInput.addEventListener("keyup", (e) => {
+    let search = e.target.value;
+    getSearchCards(search);
+    
 });
 
 
