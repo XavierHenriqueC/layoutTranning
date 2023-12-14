@@ -412,7 +412,6 @@ function btnsResource (item) {
         const titleCardTarget = e.target.parentNode.parentNode.querySelector("h4").innerText;
 
         if(titleCardTarget == item.title && e.target.classList.contains("resource-screen-buttons")){
-            console.log(titleCardTarget);
             
             const button = e.target.innerText;
 

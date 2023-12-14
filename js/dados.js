@@ -3,7 +3,7 @@
 const dados = [ 
 
     compressorHanwha = {
-        title: "SM3100 - HANWHA",
+        title: "SM3100 (Hanwha)",
         description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
         img: "img/machines/cda/sm3100hanwha.png",
         
@@ -23,11 +23,11 @@ const dados = [
         manualLink: "files/cda/hanwha/SM3100.pdf",
         procedureLink: "",
         diagramLink: "files/cda/hanwha/Diagrama elétrico de controle.pdf",
-        picturesLink: "",
+        picturesLink: "files/cda/hanwha/outros/SM 3100 Hanwha.jpg",
     },
 
     compressorSierra200 = {
-        title: "Sierra 200 - Ingersoll Rand",
+        title: "Sierra 200 (Ingersoll Rand)",
         description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
         img: "img/machines/cda/sierra200.jpg",
         
@@ -43,10 +43,15 @@ const dados = [
         power: "200 HP / 445 kW",
         voltage: "380 V",
         current: "600 A",
+
+        manualLink: "files/cda/sierra200/sierra200 manual.pdf",
+        procedureLink: "",
+        diagramLink: "",
+        picturesLink: "",
     },
     
     compressorNirvana150 = {
-        title: "Nirvana 150 - Ingersoll Rand",
+        title: "Nirvana 150 (Ingersoll Rand)",
         description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
         img: "img/machines/cda/nirvana150.jpg",
         
@@ -54,15 +59,43 @@ const dados = [
         category: "Compressor de AR",
         subCategory: "Parafuso Rotativo",
         factory: "Ingersoll Rand",
-        model: "H200A",
-        tag: "CDA-02",
+        model: "N150",
+        tag: "CDA-03",
         partNumber: "H200A43EGER4",
         capacity: "28 m³/min",
 
         power: "150 HP / 445 kW",
         voltage: "380 V",
         current: "600 A",
+
+        manualLink: "files/cda/nirvana150/nirvana150 Manual.pdf",
+        procedureLink: "",
+        diagramLink: "",
+        picturesLink: "",
+    },
+
+    compressorFsElliott = {
+        title: "Polaris P300+ (FS Elliott)",
+        description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
+        img: "img/machines/cda/fselliot.jpg",
+        
+        utility: "CDA",
+        category: "Compressor de AR",
+        subCategory: "Centrifugo",
+        factory: "FS Elliott",
+        model: "P300+",
+        tag: "CDA-04",
+        partNumber: "H200A43EGER4",
+        capacity: "28 m³/min",
+
+        power: "300 HP / 445 kW",
+        voltage: "380V",
+        current: "600 A",
+
+        manualLink: "files/cda/fselliot/FS Elliott Polaris.pdf",
+        procedureLink: "",
+        diagramLink: "",
+        picturesLink: "",
     },
     
 ];
-

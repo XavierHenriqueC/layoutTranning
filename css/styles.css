@@ -306,6 +306,7 @@ main {
     border: 1px solid #ccc;
     width: 75%;
     padding: 0.4rem;
+    height: 100%;
     max-height: 50%;
     pointer-events: none;
 }
@@ -313,7 +314,6 @@ main {
 .central-item .resource-img img{
     width: 80%;
     margin: 0 auto;
-    max-height: fit-content;
     pointer-events: none;
 }
 
