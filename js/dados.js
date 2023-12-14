@@ -19,6 +19,11 @@ const dados = [
         power: "600 HP / 445 kW",
         voltage: "380 V",
         current: "600 A",
+
+        manualLink: "files/cda/hanwha/SM3100.pdf",
+        procedureLink: "",
+        diagramLink: "files/cda/hanwha/Diagrama elétrico de controle.pdf",
+        picturesLink: "",
     },
 
     compressorSierra200 = {
@@ -54,7 +59,7 @@ const dados = [
         partNumber: "H200A43EGER4",
         capacity: "28 m³/min",
 
-        power: "200 HP / 445 kW",
+        power: "150 HP / 445 kW",
         voltage: "380 V",
         current: "600 A",
     },

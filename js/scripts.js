@@ -29,7 +29,7 @@ const searchBar = document.querySelector(".search-bar");
 
 //Funçoes
 
-//Função para criar um card no container central
+//Função para criar um card no container central e a tela de especificações do Resource
 function createCard (item) {
     
     //Cria o card
@@ -76,22 +76,22 @@ function createCard (item) {
     resourceSpecTitleDiv.appendChild(resourseSpecButtons);
 
     const manualBtn = document.createElement("button");
-    manualBtn.classList.add("manual-btn");
+    manualBtn.classList.add("resource-screen-buttons");
     manualBtn.innerText = "Manuais de Instruções";
     resourseSpecButtons.appendChild(manualBtn);
 
     const procedureBtn = document.createElement("button");
-    procedureBtn.classList.add("procedure-btn");
+    procedureBtn.classList.add("resource-screen-buttons");
     procedureBtn.innerHTML = "Procedimentos";
     resourseSpecButtons.appendChild(procedureBtn);
 
     const diagramsBtn = document.createElement("button");
-    diagramsBtn.classList.add("diagrams-btn");
+    diagramsBtn.classList.add("resource-screen-buttons");
     diagramsBtn.innerHTML = "Diagramas Elétricos";
     resourseSpecButtons.appendChild(diagramsBtn);
 
     const picturesBtn = document.createElement("button");
-    picturesBtn.classList.add("pictures-btn");
+    picturesBtn.classList.add("resource-screen-buttons");
     picturesBtn.innerHTML = "Fotos";
     resourseSpecButtons.appendChild(picturesBtn);
     
@@ -346,8 +346,6 @@ resourceScreenBtnClose.addEventListener("click", () => {
 });
 
 
-//
-
 //Evento para o botão de OK da tela de adicionar cards
 resourceScreenBtnOk.addEventListener("click", () => {
 
@@ -406,17 +404,48 @@ function abrirCard (cardTitle) {
 
 }
 
-//Evento do botão de voltar da topbar-central
+//Evento para os botões das telas de Especificações do Resource
+function btnsResource (item) {
+
+    document.addEventListener("click", (e) => {
+
+        const titleCardTarget = e.target.parentNode.parentNode.querySelector("h4").innerText;
+
+        if(titleCardTarget == item.title && e.target.classList.contains("resource-screen-buttons")){
+            console.log(titleCardTarget);
+            
+            const button = e.target.innerText;
+
+            //Clique do botão de Manual de Instruções
+            if(button == "Manuais de Instruções" && item.manualLink){
+                window.open(item.manualLink, "_blank");
+            }
+
+            //Clique do botão de Procedimentos
+            if(button == "Procedimentos" && item.manualLink){
+                window.open(item.procedureLink, "_blank");
+            }
+
+            //Clique do botão de Diagrama Elétricos
+            if(button == "Diagramas Elétricos" && item.manualLink){
+                window.open(item.diagramLink, "_blank");
+            }
+
+            //Clique do botão de Fotos
+            if(button == "Fotos" && item.manualLink){
+                window.open(item.picturesLink, "_blank");
+            }
+        }
+
+    });
+}
 
 //Adiciona os cards na div Central
 dados.forEach((item) => {
     createCard(item);
-});
-
-dados.forEach((item) => {
     abrirCard(item.title);
+    btnsResource(item);
 });
-
 
 //Evento da barra de pesquisa
 searchInput.addEventListener("keyup", (e) => {

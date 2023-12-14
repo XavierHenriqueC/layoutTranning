@@ -279,7 +279,6 @@ main {
 
 }
 
-
 .central-item .central-item-text {
     min-height: 40%;
     max-height: 40%;
@@ -288,7 +287,7 @@ main {
     pointer-events: none;
 }
 
-.central-item h{
+.central-item h4{
     font-size: 1rem;
     border-bottom: 1px solid #ccc;
     margin-bottom: 0.8rem;
@@ -297,7 +296,7 @@ main {
 
 .central-item p{
     font-size: 0.9rem;
-    color: #666;
+    color: #777;
     margin-bottom: 1.5rem;
     pointer-events: none;
 }
