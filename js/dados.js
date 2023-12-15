@@ -12,7 +12,7 @@ const dados = [
         subCategory: "Centrifugo",
         factory: "Hanwha",
         model: "SM3100",
-        tag: "CDA-01",
+        tag: "",
         partNumber: "SM3100PNJ453F",
         capacity: "40 m³/min",
 
@@ -31,12 +31,12 @@ const dados = [
         description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
         img: "img/machines/cda/sierra200.jpg",
         
-        utility: "CDA",
+        utility: "ENERGY",
         category: "Compressor de AR",
         subCategory: "Parafuso Rotativo",
         factory: "Ingersoll Rand",
         model: "H200A",
-        tag: "CDA-02",
+        tag: "N2",
         partNumber: "H200A43EGER4",
         capacity: "28 m³/min",
 
@@ -55,12 +55,12 @@ const dados = [
         description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
         img: "img/machines/cda/nirvana150.jpg",
         
-        utility: "CDA",
+        utility: "HVAC",
         category: "Compressor de AR",
         subCategory: "Parafuso Rotativo",
         factory: "Ingersoll Rand",
         model: "N150",
-        tag: "CDA-03",
+        tag: "",
         partNumber: "H200A43EGER4",
         capacity: "28 m³/min",
 
@@ -79,12 +79,12 @@ const dados = [
         description: "Os compressores de ar lubrificados de parafuso rotativo da Ingersoll Rand oferecem o melhor em design e tecnologia comprovados...",
         img: "img/machines/cda/fselliot.jpg",
         
-        utility: "CDA",
+        utility: "WWT",
         category: "Compressor de AR",
         subCategory: "Centrifugo",
         factory: "FS Elliott",
         model: "P300+",
-        tag: "CDA-04",
+        tag: "",
         partNumber: "H200A43EGER4",
         capacity: "28 m³/min",
 

@@ -48,6 +48,16 @@ function createCard (item) {
     itemDescription.innerText = item.description;
     divText.appendChild(itemDescription);
 
+    const itemDescription1 = document.createElement("p");
+    itemDescription1.classList.add("hide");
+    itemDescription1.innerText = `Utilidades: ${item.utility}`;
+    divText.appendChild(itemDescription1);
+
+    const itemDescription2 = document.createElement("p");
+    itemDescription2.classList.add("hide");
+    itemDescription2.innerText = item.tag;
+    divText.appendChild(itemDescription2);
+
     const divResourceImg = document.createElement("div");
     divResourceImg.classList.add("resource-img");
     divPrincipal.appendChild(divResourceImg);
@@ -273,16 +283,36 @@ function addCard () {
     const item = {
         title: title.value,
         description: description.value,
-        img: "img/machines/cda/nirvana150.jpg",
+        img: img,
+        utility: "",
+        category: "",
+        subCategory: "",
+        factory: "",
+        model: "",
+        tag: "",
+        partNumber: "",
+        capacity: "",
+
+        power: "",
+        voltage: "",
+        current: "",
+
+        manualLink: "",
+        procedureLink: "",
+        diagramLink: "",
+        picturesLink: "",
     }
 
     if (title.value && description.value){
-        createCard (item);
         addResourceScreenElement.classList.add("hide");  
+        dados.push(item);
+        createCard(item);
+        btnsResource(item);
+        abrirCard(item.title);
     }
-    
 
 }
+
 
 //Remove seleção do botão da sidebar e remove a lista de elementos da sidebar
 function addHideDisplaytoAll () {
@@ -348,9 +378,7 @@ resourceScreenBtnClose.addEventListener("click", () => {
 
 //Evento para o botão de OK da tela de adicionar cards
 resourceScreenBtnOk.addEventListener("click", () => {
-
     addCard ();
-    
 })
 
 //Evento de clique dos cards
@@ -377,6 +405,7 @@ function abrirCard (cardTitle) {
                 if (item.children[0].childNodes[0].innerText == parentEl.querySelector("h4").innerText) {
                     item.classList.remove("hide");
                     searchBar.classList.add("hide");
+                    addResourceBtn.classList.add("hide");
                  }
             });
             
@@ -387,6 +416,8 @@ function abrirCard (cardTitle) {
             
             searchBar.classList.remove("hide");
             searchInput.value = "";
+
+            addResourceBtn.classList.remove("hide");
 
             returnBtnTbCenter.style.pointerEvents = "none";
             returnBtnTbCenter.style.opacity = "0.3";
@@ -409,9 +440,13 @@ function btnsResource (item) {
 
     document.addEventListener("click", (e) => {
 
-        const titleCardTarget = e.target.parentNode.parentNode.querySelector("h4").innerText;
+        let titleCardTarget = 0;
 
-        if(titleCardTarget == item.title && e.target.classList.contains("resource-screen-buttons")){
+        if(e.target.classList.contains("resource-screen-buttons")) {
+            titleCardTarget = e.target.parentNode.parentNode.querySelector("h4").innerText;
+        }
+        
+        if(titleCardTarget == item.title){
             
             const button = e.target.innerText;
 
@@ -439,6 +474,48 @@ function btnsResource (item) {
     });
 }
 
+//EVENTO DOS FILTROS DA SIDEBAR
+function filterSideBar () {
+
+    const filters = document.querySelectorAll (".filter-sidebar");
+    let sideBarFilter = [];
+
+    function run () {
+        filters.forEach ((item) => {
+            const inputName = item.querySelector("input[name]").name;
+            const inputCheck = item.querySelector("input[type=checkbox]").checked;
+            sideBarFilter.push({nome: inputName, status: inputCheck});
+        });
+    }
+    
+    filters.forEach ((item) => {
+        item.addEventListener("click", () => {
+            run ();
+            const centralItens = document.querySelectorAll(".central-item");
+    
+            centralItens.forEach((screen) => {
+                screen.classList.remove("hide");
+                const paragraphs = screen.querySelectorAll("p");
+                paragraphs.forEach((p) => {
+                    sideBarFilter.forEach((filterUnique) => {
+                        const normalizedP = p.innerText.toLowerCase();
+                        console.log(normalizedP);
+                        const normalizedFilter = filterUnique.nome.toLowerCase();
+                        console.log(normalizedFilter);
+                        if (normalizedP.includes("utilidades:") && normalizedP.includes(normalizedFilter) && filterUnique.status == false){
+                            screen.classList.add("hide");
+                        } 
+                    });
+                });
+            });
+            
+            let emptyArr = [];
+            sideBarFilter = emptyArr;
+        });
+    })
+
+}
+
 //Adiciona os cards na div Central
 dados.forEach((item) => {
     createCard(item);
@@ -453,4 +530,4 @@ searchInput.addEventListener("keyup", (e) => {
     
 });
 
-
+filterSideBar ();
