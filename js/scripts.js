@@ -55,7 +55,7 @@ function createCard (item) {
 
     const itemDescription2 = document.createElement("p");
     itemDescription2.classList.add("hide");
-    itemDescription2.innerText = item.tag;
+    itemDescription2.innerText = `Tag: ${item.tag}`;
     divText.appendChild(itemDescription2);
 
     const divResourceImg = document.createElement("div");
@@ -334,7 +334,6 @@ const getSearchCards = (search) => {
         let cardTitle = card.querySelector("h4").innerText.toLowerCase();
 
         const normalizedSearch = search.toLowerCase();
-        card.classList.remove("hide");
 
         if(!cardTitle.includes(normalizedSearch)) {
             card.classList.add("hide");       
@@ -343,26 +342,61 @@ const getSearchCards = (search) => {
 };
 
 
-
 //Eventos
 
 //Eventos dos botões da topbar
-function btnTopBarEvent (btn, sideBarElement) {
+function btnTopBarEvent (btn, screen) {
+    
     btn.addEventListener("click", () => {
-        if (!sideBarElement.classList.contains("hide")) {
+       
+        if (!screen.classList.contains("hide")) {
             return
         } else {
             addHideDisplaytoAll();
-            sideBarElement.classList.remove("hide");
+            screen.classList.remove("hide");
             btn.classList.add("button-selected");
         }
     });
-}
-
+};
 
 btnTopBarEvent (tbMachineResourcesBtn, utilidadesSbElement);
-btnTopBarEvent (tbElectricPanelsBtn, electricPanelsSbElement);
 
+
+//FUNÇÃO PARA OS FILTROS DA SIDEBAR
+function listSideBar () {
+
+    const centralItens = document.querySelectorAll(".central-item");
+    let sideBarFilter = [];
+
+    filters.forEach ((item) => {
+        const inputName = item.querySelector("input[name]").name;
+        const inputCheck = item.querySelector("input[type=checkbox]").checked;
+        sideBarFilter.push({nome: inputName, status: inputCheck});
+    });
+
+    centralItens.forEach((screen) => {
+        const paragraphs = screen.querySelectorAll("p");
+        paragraphs.forEach((p) => {
+            sideBarFilter.forEach((filterUnique) => {
+                const normalizedP = p.innerText.toLowerCase();
+               // console.log(normalizedP);
+                const normalizedFilter = filterUnique.nome.toLowerCase();
+              //  console.log(normalizedFilter);
+                if (normalizedP.includes("utilidades:") && normalizedP.includes(normalizedFilter) && filterUnique.status == false){
+                    screen.classList.add("hide");
+                }
+
+                if (normalizedP.includes("utilidades:") && normalizedP.includes(normalizedFilter) && filterUnique.status == true){
+                    screen.classList.remove("hide");
+                }
+        
+            });
+        });
+    });
+
+    let emptyArr = [];
+    sideBarFilter = emptyArr;
+}
 
 
 //Evento para o botão de adicionar cards a div central (abre tela de adicionar cards)
@@ -395,6 +429,11 @@ function abrirCard (cardTitle) {
             
             returnBtnTbCenter.style.pointerEvents = "all";
             returnBtnTbCenter.style.opacity = "1";
+            
+            sideBarElement.forEach ((element) => {
+                element.style.opacity = "0.3";
+                element.style.pointerEvents = "none";
+            });
 
             itens.forEach((item) => {
                 item.classList.add("hide");
@@ -421,6 +460,11 @@ function abrirCard (cardTitle) {
 
             returnBtnTbCenter.style.pointerEvents = "none";
             returnBtnTbCenter.style.opacity = "0.3";
+
+            sideBarElement.forEach ((element) => {
+                element.style.opacity = "1";
+                element.style.pointerEvents = "all";
+            });
             
             itens.forEach((item) => {
                 item.classList.remove("hide");
@@ -474,47 +518,6 @@ function btnsResource (item) {
     });
 }
 
-//EVENTO DOS FILTROS DA SIDEBAR
-function filterSideBar () {
-
-    const filters = document.querySelectorAll (".filter-sidebar");
-    let sideBarFilter = [];
-
-    function run () {
-        filters.forEach ((item) => {
-            const inputName = item.querySelector("input[name]").name;
-            const inputCheck = item.querySelector("input[type=checkbox]").checked;
-            sideBarFilter.push({nome: inputName, status: inputCheck});
-        });
-    }
-    
-    filters.forEach ((item) => {
-        item.addEventListener("click", () => {
-            run ();
-            const centralItens = document.querySelectorAll(".central-item");
-    
-            centralItens.forEach((screen) => {
-                screen.classList.remove("hide");
-                const paragraphs = screen.querySelectorAll("p");
-                paragraphs.forEach((p) => {
-                    sideBarFilter.forEach((filterUnique) => {
-                        const normalizedP = p.innerText.toLowerCase();
-                        console.log(normalizedP);
-                        const normalizedFilter = filterUnique.nome.toLowerCase();
-                        console.log(normalizedFilter);
-                        if (normalizedP.includes("utilidades:") && normalizedP.includes(normalizedFilter) && filterUnique.status == false){
-                            screen.classList.add("hide");
-                        } 
-                    });
-                });
-            });
-            
-            let emptyArr = [];
-            sideBarFilter = emptyArr;
-        });
-    })
-
-}
 
 //Adiciona os cards na div Central
 dados.forEach((item) => {
@@ -523,11 +526,26 @@ dados.forEach((item) => {
     btnsResource(item);
 });
 
+//EVENTO DOS FILTROS DA SIDEBAR
+const filters = document.querySelectorAll (".filter-sidebar");
+
+filters.forEach ((item) => {
+    item.addEventListener("click", () => {
+        listSideBar ();
+    });
+});
+
 //Evento da barra de pesquisa
 searchInput.addEventListener("keyup", (e) => {
     let search = e.target.value;
+
+    const centralItens = document.querySelectorAll(".central-item");
+    centralItens.forEach((screen) => {
+        screen.classList.remove("hide");
+    });
+
+    listSideBar ();
     getSearchCards(search);
     
 });
 
-filterSideBar ();
